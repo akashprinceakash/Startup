@@ -1,0 +1,102 @@
+/* src/App.css */
+
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Body styling */
+body {
+  background-color: #f7f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+/* Container for login and signup forms */
+.auth-container {
+  background-color: #ffffff;
+  width: 400px;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid grey;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title styling */
+.auth-container h2 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* Input styling */
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #555;
+  transition: border-color 0.3s;
+}
+
+/* Input focus styling */
+.auth-container input[type="email"]:focus,
+.auth-container input[type="password"]:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* Button styling */
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: #4a90e2;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.auth-container button:hover {
+  background-color: #357abd;
+}
+
+/* Google login button */
+.auth-container .google-button {
+  background-color: #db4437;
+}
+
+/* Google button hover effect */
+.auth-container .google-button:hover {
+  background-color: #c23321;
+}
+
+/* Link styling */
+.auth-container p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.auth-container p a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.auth-container p a:hover {
+  text-decoration: underline;
+}

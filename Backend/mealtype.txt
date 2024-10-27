@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Shop Phones",
+    "content": "Start your shopping with exclusive Dsicount on Phones options",
+    "image": "Assets/iPhone-16-A.jpg ",
+    "shop": 1
+  },
+  {
+    "name": "Shop laptops",
+    "content": "Start your shopping with exclusive Dsicount on laptops options",
+    "image": "Assets/laptops-B.webp",
+    "shop": 2
+  },
+  {
+    "name": "Shop airpods",
+    "content": "Start your Shopping with exclusive Discount on airpods options",
+    "image": "Assets/airpods-D.jpg",
+    "shop": 3
+  },
+  {
+    "name": "Shop camera",
+    "content": "Start your Shopping  with exclusive Dsicount on  Camera's",
+    "image": "Assets/camera-F.jpg",
+    "shop": 4
+  },
+  {
+    "name": "Shop Tv",
+    "content": "Start your Shopping with exclusive TV Collections",
+    "image": "Assets/TV-C.jpg",
+    "shop": 5
+  },
+  {
+    "name": "Shop Watch",
+    "content": "Start your day with exclusive Dsicount on watches options",
+    "image": "Assets/watch-E.jpg",
+    "meal_type": 6
+  }
+]
