@@ -10,22 +10,25 @@
 
 /* Body styling */
 body {
-  background-color: #f7f9fc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* height: 100vh; */
+  background-color: #f7f9fc;  
+
 }
 
 /* Container for login and signup forms */
 .auth-container {
   background-color: #ffffff;
-  width: 400px;
-  padding: 2rem;
+  width: 500px;
+  padding: 5rem ;
   border-radius: 10px;
   border: 1px solid grey;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  margin:0 auto;
+  max-width: 100%;
+  min-height: 50vh;
+  object-fit:fill;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 /* Title styling */
@@ -79,7 +82,7 @@ body {
 .auth-container .google-button {
   background-color: #db4437;
 }
-
+  
 /* Google button hover effect */
 .auth-container .google-button:hover {
   background-color: #c23321;

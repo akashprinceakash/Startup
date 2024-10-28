@@ -1,9 +1,11 @@
 /* Footer Styles */
+
 .footer {
     background-color: #222;
     color: #fff;
-    padding: 20px 0;
+    padding: 5px;
     text-align: center;
+    max-width: 100%;
   }
   
   .footer-content {
