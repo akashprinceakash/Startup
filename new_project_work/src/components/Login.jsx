@@ -9,15 +9,16 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors , setError] = useState();
+  const [error2 , seterror2] = useState();
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Login Successful");
       navigate('/dashboard');
     } catch (error) {
-      alert("Error: " + error.message);
+      // alert("Error: " + error.message);
+      seterror2(error.message)
     }
   };
 
@@ -34,6 +35,7 @@ const Login = () => {
 
   return (
     <div className="auth-container">
+      <span style={{color:'#e40b0b'}}>{error2}</span>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
