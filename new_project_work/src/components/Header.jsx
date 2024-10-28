@@ -8,7 +8,7 @@ export default function Header() {
     navigate('/')
   }
   const getHeaderContent = () => {
-    if (location.pathname === "/dashboard") {
+    if (location.pathname === "/dashboard" || location.pathname === "/qs") {
       return <>
         <div className="logo-container">
           <img
