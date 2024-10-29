@@ -27,18 +27,13 @@ const dashboard = ({ user }) => {
     navigate(`/qs?shop=${shopid}&image=${imagesrc}&name=${names}`)
   }
  
-
   return (
     <>
-
-
       <div className="quick-search">
         <div className='categories' >
           {quicksearchData.map((item) => {
             const { name, content, image, shop } = item;
             return <div className="category" key={shop} >
-
-
               <img src={`/${image}`} alt="no image" onClick={() => handlequicksearch(shop, image, name)} />
 
               <h4>{name}</h4>
