@@ -35,8 +35,8 @@ const CreateUsers = () => {
         axios.post("http://localhost:9001/createUser", { name, content, imageurl, imageID })
             .then(result => {
                 console.log(JSON.stringify(result.data))
-                setimagesid(imageID)
-                return  axios.post("http://localhost:9001/createdetails", {imagesid, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12 })
+                setimagesid(result.data.imageID)
+                return  axios.post("http://localhost:9001/createdetails", {imagesid: result.data.imageID, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12 })
             })
               .then(result => {
                 console.log("Details"+JSON.stringify(result.data))

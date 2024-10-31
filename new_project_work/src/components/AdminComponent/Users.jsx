@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link ,  useNavigate} from 'react-router-dom'
+import { Table } from 'react-bootstrap';
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [details, setdetails] = useState([]);
+    const [combinedData, setCombinedData] = useState([]);
     const navigate=useNavigate()
     useEffect(() => {
         axios.get('http://localhost:9001/users')
@@ -18,7 +20,17 @@ const Users = () => {
             })
             .catch(error => console.log(error))
     }, [])
-    const handledelete = (id) => {
+
+      // Combine users and details data based on imageID and imagesid match
+    useEffect(() => {
+        const data = users.map(user => {
+            const userDetail = details.find(detail => detail.imagesid === user.imageID);
+            return { ...user, ...userDetail };
+        });
+        setCombinedData(data);
+    }, [users, details]);
+
+    const handleDelete = (id) => {
         axios.delete('http://localhost:9001/deleteUser/' + id)
             .then(result => {
                 console.log("delted darshboard" + result.data)
@@ -39,7 +51,7 @@ const Users = () => {
             <div className='w-100 bg-white rounded p-3 '>
             <button className='bg-danger m-4 p-1' onClick={()=>handleexit()} >Exit</button>
                 <Link to="/create" className='btn btn-success'>Add+</Link>
-                <table className='table'>
+                {/* <table className='table'>
                     <thead>
                         <tr>
                             <td>Name</td>
@@ -69,7 +81,7 @@ const Users = () => {
                                     <td>{imageurl}</td>
                                     <td>{imageID}</td>
                                     {details.map(({ imagesid, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12 }) => (
-                                        <React.Fragment >
+                                        <React.Fragment key={imagesid} >
                                             <td>{item1}</td>
                                             <td>{item2}</td>
                                             <td>{item3}</td>
@@ -93,7 +105,66 @@ const Users = () => {
                             ))
                         }
                     </tbody>
-                </table>
+                </table> */}
+                <Table responsive="md" striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Content</th>
+                    <th>Image URL</th>
+                    <th>Image ID</th>
+                    <th>Item 1</th>
+                    <th>Item 2</th>
+                    <th>Item 3</th>
+                    <th>Item 4</th>
+                    <th>Item 5</th>
+                    <th>Item 6</th>
+                    <th>Item 7</th>
+                    <th>Item 8</th>
+                    <th>Item 9</th>
+                    <th>Item 10</th>
+                    <th>Item 11</th>
+                    <th>Item 12</th>
+                </tr>
+            </thead>
+            <tbody>
+                {combinedData.map((row, index) => (
+                    <tr key={index}>
+                        <td>{index > 0 && combinedData[index - 1].name === row.name ? '' : row.name}</td>
+                        <td>{index > 0 && combinedData[index - 1].content === row.content ? '' : row.content}</td>
+                        <td>{index > 0 && combinedData[index - 1].imageurl === row.imageurl ? '' : row.imageurl}</td>
+                        <td>{index > 0 && combinedData[index - 1].imageID === row.imageID ? '' : row.imageID}</td>
+                        <td>{row.item1}</td>
+                        <td>{row.item2}</td>
+                        <td>{row.item3}</td>
+                        <td>{row.item4}</td>
+                        <td>{row.item5}</td>
+                        <td>{row.item6}</td>
+                        <td>{row.item7}</td>
+                        <td>{row.item8}</td>
+                        <td>{row.item9}</td>
+                        <td>{row.item10}</td>
+                        <td>{row.item11}</td>
+                        <td>{row.item12}</td>
+                        <td>
+                            {index === 0 || combinedData[index - 1].imageID !== row.imageID ? (
+                                <>
+                                    <Link to={`/update/${row.imageID}`} className='btn btn-success'>
+                                        Update
+                                    </Link>
+                                    <button
+                                        className='btn btn-danger'
+                                        onClick={() => handleDelete(row.imageID)}
+                                    >
+                                        Delete
+                                    </button>
+                                </>
+                            ) : null}
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
             </div>
         </div>
     )

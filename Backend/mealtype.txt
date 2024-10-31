@@ -9,7 +9,7 @@
     "name": "Shop laptops",
     "content": "Start your shopping with exclusive Dsicount on laptops options",
     "image": "Assets/laptops-B.webp",
-    "shop": 2
+    "shop": 2 
   },
   {
     "name": "Shop airpods",
