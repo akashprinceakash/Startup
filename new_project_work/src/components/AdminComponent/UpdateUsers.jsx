@@ -93,6 +93,9 @@ const UpdateUsers = () => {
         //     })
         //     .catch(error => console.log(error))
     }
+    const handlexit=()=>{
+        navigate('/users')
+     }
     return (
         <div className='d-flex  bg-primary justify-content-center align-items-center'>
             <div className='w-50 bg-white rounded p-3'>
@@ -178,6 +181,7 @@ const UpdateUsers = () => {
                         <input type="text" placeholder='Enter Item-12' className='form-control'
                             value={item12} onChange={(e) => setItem12(e.target.value)} />
                     </div>
+                    <button className='bg-danger px-3 py-1 mx-4 border border-info border-start-0 rounded' onClick={()=>handlexit()} >Cancel Update</button>
                     <button className="btn btn-success">Update</button>
                 </form>
             </div>

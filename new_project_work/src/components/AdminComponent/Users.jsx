@@ -43,13 +43,11 @@ const Users = () => {
             })
             .catch(error => console.log("cannot able to delete"+error))
     }
-    const handleexit=()=>{
-        navigate('/')
-     }
+   
     return (
         <div className=''>
             <div className='w-100 bg-white rounded p-3 '>
-            <button className='bg-danger m-4 p-1' onClick={()=>handleexit()} >Exit</button>
+            
                 <Link to="/create" className='btn btn-success'>Add+</Link>
                 {/* <table className='table'>
                     <thead>

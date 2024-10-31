@@ -49,9 +49,11 @@ const CreateUsers = () => {
         navigate('/users')
      }
     return (
-        <div className='d-flex  bg-primary justify-content-center align-items-center'>
-        <button className='bg-danger' onClick={()=>handlexit()} >Exit</button>
-            <div className='w-50 bg-white rounded p-3 '>
+        <>
+        
+        <div className='d-flex  bg-primary justify-content-center align-items-center w-100 bg-white rounded p-3'>
+        
+            <div className='w-75 bg-white rounded p-3 '>
                 <form onSubmit={Submit}>
                     <h2>Add Users</h2>
                     <div className="mb-2">
@@ -138,10 +140,12 @@ const CreateUsers = () => {
                         <input type="text" placeholder='Enter the Item1 Details' className='form-control'
                             onChange={(e) => setItem12(e.target.value)} />
                     </div>
+                    <button className='bg-danger px-3 py-1 mx-4 border border-info border-start-0 rounded' onClick={()=>handlexit()} >Back</button>
                     <button className="btn btn-success">Submit</button>
                 </form>
             </div>
         </div>
+        </>
     )
 }
 export default CreateUsers;
