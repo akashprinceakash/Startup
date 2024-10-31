@@ -2,19 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
     text-align: center;
   }
   
 
   .image-section {
-
     width: 100%;
-    margin: 2px 0;
+    margin: 8px 0;
+    border: 0.50px solid rgb(153, 151, 151);
+    max-width: 100%;
+    
+    
   }
   .image-section img {
     width: 100%;
     height: 500px;
     display: block;
+    object-fit: contain;
+    box-shadow:  4px 8px 10px rgb(19, 18, 18);
+   
   }
   
   .grid-section {

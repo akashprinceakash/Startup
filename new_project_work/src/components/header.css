@@ -15,6 +15,7 @@
    width: 80px;
    background-position: center;
    background-size: contain;
+   padding: 4px 7px;
 }
 .searchdiv{
     height: 20px;
