@@ -12,17 +12,19 @@ const Login = () => {
   const [errors, setError] = useState();
   const [error2, seterror2] = useState();
   const navigate = useNavigate();
-
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
+      console.log(user);
+      
       await saveUserRole(user.uid, user.email);
       checkUserRole(user.uid);
     } catch (error) {
-      setError2(error.message);
+      seterror2(error.message);
     }
   };
 
@@ -31,6 +33,8 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       await saveUserRole(user.uid, user.email);
+      // console.log(user);
+      
       checkUserRole(user.uid);
     } catch (error) {
       setError(error.message);
@@ -75,7 +79,6 @@ const Login = () => {
         />
         <input
           type="password"
-
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"

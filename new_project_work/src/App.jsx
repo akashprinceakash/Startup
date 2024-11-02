@@ -12,6 +12,7 @@ import Quicksearch from './components/Quicksearch';
 import Signup from './components/Signup';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Myprofile from './components/ProfileSection/Myprofile';
 // import AdminPage from './components/AdminPage';
 //AdminComponent
 import CreateUsers from './components/AdminComponent/CreateUsers';
@@ -31,6 +32,7 @@ function App() {
           <Route path='/users' element={<Users />}></Route>
           <Route path='/create' element={<CreateUsers />}></Route>
           <Route path='/update/:id' element={<UpdateUsers />}></Route>
+          <Route path='/profile' element={<Myprofile />}></Route>
         </Routes>
         <Footer />
       </Router>

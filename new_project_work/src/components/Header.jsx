@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import { useLocation, useNavigate } from "react-router-dom";
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [showButtons , setShowButtons] = useState(false);
   const handlesignout = () => {
     navigate('/')
+  }
+  const handleClick =()=>{
+    setShowButtons(!showButtons)
+  }
+  const handleProfile=()=>{
+    navigate('/profile')
   }
   const getHeaderContent = () => {
     if (location.pathname === "/dashboard" || location.pathname === "/qs" || location.pathname === "/users") {
@@ -26,10 +33,14 @@ export default function Header() {
           </div>
         
         <div className="auth">
-          <button>Akash</button>
+          <button className="toggle-btn" onClick={handleClick}>
+            {showButtons ? 'Akash' : 'Akash' }
+          </button>
+            {showButtons &&
+         <> <button onClick={()=> { handleProfile()}}>My Profile</button>
           <button className="signup" onClick={() => handlesignout()}>
             Logout
-          </button>
+          </button></>}
         </div>
       </>
 
