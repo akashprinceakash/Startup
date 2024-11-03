@@ -78,6 +78,7 @@
 
 .info-item {
     margin-bottom: 15px;
+    text-align: start;
 }
 
 .info-item label {
@@ -113,6 +114,38 @@
 .faqs p {
     margin: 5px 0;
     color: #666;
+}
+
+
+.info-item{
+  text-align: center;
+}
+.info-addresss{
+  margin: 20px;
+  border-radius: 25%;
+}
+.info-addresss>h6{
+  text-align: start;
+}
+.info-addresss>textarea , .info-addresss>select , .info-addresss>input {
+  width: 100%;
+}
+
+.useraddress{
+  padding: 10px;
+  margin-top: 30px;
+  background-color: whitesmoke;
+ 
+}
+.useraddress>span{
+  display: flex;
+  justify-content: space-between;
+}
+.useraddress>span>svg{
+  color: red;
+}
+.useraddress>p , .useraddress>h6{
+  text-align: start;
 }
 
 /* .profile-page {

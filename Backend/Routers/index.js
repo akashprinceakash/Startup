@@ -1,10 +1,10 @@
 const express = require('express');
 const routes = express.Router();
 
-// const quicksearchController = require('../Controllers/quickSearches');
+
 const UsersController = require('../Controllers/Users')
 const UserDetailsController = require('../Controllers/UsersDetails')
-// routes.get('/quicksearch',quicksearchController.getQuickSearch);
+const ManageuserAddress = require('../Controllers/Manageaddress')
 
 routes.post("/createUser",UsersController.createuser);
 routes.get("/users",UsersController.getUser);
@@ -19,4 +19,9 @@ routes.get("/getdetails",UserDetailsController.getDetails);
 routes.get("/getdetails/:imagesid",UserDetailsController.getDetailsById);
 routes.put("/updatedetails/:imagesid",UserDetailsController.updateDetails);
 routes.delete("/deletedetails/:imagesid",UserDetailsController.deleteDetails);
+
+
+routes.post("/createaddress", ManageuserAddress.CreateAddress);
+routes.get("/getaddress",ManageuserAddress.getAllAdrress);
+routes.delete("/deleteaddress/:id",ManageuserAddress.deleteAllAdrress);
 module.exports=routes;

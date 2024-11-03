@@ -2,25 +2,12 @@ const UserModel= require('../Models/Usersschema');
 
 // app.post("/createUser",
   exports.createuser=(req,res)=>{
-    // const { name, content, imageurl, imageID } = req.body;
-       // Ensure imageID is not null
-    //    if (!imageID) {
-    //     return res.status(400).json({ error: "Image ID is required" });
-    // }
+
     UserModel.create(req.body)
     .then(users => res.json(users))
     .catch(err => res.json(err))
 }
-// exports.createuser=async(req,res)=>{
-//     const user= await UserModel.create({
-//        name: req.body.name,
-//        content:req.body.content,
-//        imageurl:req.body.imageurl,
-//        imageID:req.body.imageID
-//     })
-//     const usersdata = await user.save();
-//     return res.json(usersdata)
-// }
+
 // app.get("/",
    exports.getUser=(req,res)=>{
       UserModel.find({})
