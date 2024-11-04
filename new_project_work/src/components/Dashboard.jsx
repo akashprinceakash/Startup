@@ -55,14 +55,15 @@ const dashboard = ({ user }) => {
           {quicksearchData.map((item) => {
             const { name, content, imageurl , imageID } = item;
             return ( <div className="category" key={imageID}>
-           <Slider {...settings}>  <img src={`/${imageurl}`} alt="no image" onClick={() => handlequicksearch(imageID , imageurl , name)} style={{ width: '100%', borderRadius: '10px' }} />
+           <Slider {...settings}>  
+            <img src={imageurl.startsWith("http") ? imageurl : `/${imageurl}`} alt="no image" onClick={() => handlequicksearch(imageID , imageurl , name)} style={{ width: '100%', borderRadius: '10px' }} />
            <h4>{name}</h4>
-              <div>{content}</div></Slider>
+              <div>{content}</div>
+              </Slider>
             </div>  )
           })}
          
         </div>
-
       </div>
     </>
   )

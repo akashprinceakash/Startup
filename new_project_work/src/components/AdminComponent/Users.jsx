@@ -147,7 +147,7 @@ const Users = () => {
                         <td>
                             {index === 0 || combinedData[index - 1].imageID !== row.imageID ? (
                                 <>
-                                    <Link to={`/update/${row.imageID}`} className='btn btn-success'>
+                                    <Link to={`/update/${row.imageID}`} className='btn btn-success my-3'>
                                         Update
                                     </Link>
                                     <button
