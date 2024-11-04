@@ -119,6 +119,13 @@
 
 .info-item{
   text-align: center;
+  padding: 20px;
+}
+.update-profile>button{
+  background-color: rgb(49, 77, 49);
+  margin-top: 20px;
+  padding: 10px;
+  color: #ffff;
 }
 .info-addresss{
   margin: 20px;

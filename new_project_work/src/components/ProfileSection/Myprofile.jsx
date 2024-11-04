@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { auth, db } from '../firebaseConfig';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import "./Myprofile.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -49,6 +51,49 @@ const insertOrders = async () => {
 };
 
 // Call the function to send data
+
+const [userData, setUserData] = useState({
+  firstName: '',
+  lastName: '',
+  gender: '',
+  email: '',
+  mobileNumber: '',
+});
+const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+const fetchUserProfile = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    const userRef = doc(db, 'users', user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      const data = userSnap.data();
+      // Set data, adding empty strings for any missing fields to prompt the user
+      setUserData({
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        gender: data.gender || '',
+        email: data.email || user.email, // Use auth email if not in Firestore
+        mobileNumber: data.mobileNumber || '',
+      });
+      setIsDataLoaded(true);
+    }
+  }
+};
+
+const updateUserProfile = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    const userRef = doc(db, 'users', user.uid);
+    await updateDoc(userRef, userData);
+    alert('Profile updated successfully');
+  }
+};
+
+useEffect(() => {
+  fetchUserProfile();
+}, []);
 
 useEffect(() => {
   axios.get('http://localhost:9001/getAllorders')
@@ -112,7 +157,53 @@ useEffect(() => {
           <main className="profile-content">
             {selectedMenu === "Profile Information" && (
               <section className="personal-info">
-                <h5>Personal Information <span >Edit</span></h5>
+                  <div className="info-item">
+      <h2>Profile Information</h2>
+      {isDataLoaded ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            updateUserProfile();
+          }}
+        >
+          <input
+            type="text"
+            value={userData.firstName}
+            onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+            placeholder="First Name"
+          />
+          <input
+            type="text"
+            value={userData.lastName}
+            onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+            placeholder="Last Name"
+          />
+          <select
+            value={userData.gender}
+            onChange={(e) => setUserData({ ...userData, gender: e.target.value })}
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <input
+            type="email"
+            value={userData.email}
+            disabled
+          />
+          <input
+            type="tel"
+            value={userData.mobileNumber}
+            onChange={(e) => setUserData({ ...userData, mobileNumber: e.target.value })}
+            placeholder="Mobile Number"
+          />
+         <div className="update-profile"> <button type="submit" >Update Profile</button></div>
+        </form>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+                {/* <h5>Personal Information <span >Edit</span></h5>
                 <div className="info-item">
                   <label>First Name</label>
                   <input type="text" value="Akash" readOnly />
@@ -133,8 +224,9 @@ useEffect(() => {
                 <div className="info-item">
                   <label>Mobile Number <span>Edit</span></label>
                   <input type="text" value="+919886921568" readOnly />
-                </div>
-              </section>)}
+                </div> */}
+              </section>
+            )}
 
             {selectedMenu === "Manage Addresses" && (
             <ManageAdress/>
