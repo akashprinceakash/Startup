@@ -1,16 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Myprofile.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import ManageAdress from "./ManageAdress";
 export default function Myprofile() {
   const [selectedMenu, setSelectedMenu] = useState("Profile Information");
-
-
+   const [ordereddata , setOrdereddata] = useState([]);
   const navigate = useNavigate();
   const handlelogout = () => {
     navigate('/')
   }
+ // Frontend code
+const insertOrders = async () => {
+  let orderData = [
+    { orderedId: 101, productId: 'ab2001', description: "Wireless Bluetooth Earbuds", price: 499 },
+    { orderedId: 102, productId: 'ac2002', description: "Smartphone Case", price: 1509 },
+    { orderedId: 103, productId: 'ad2003', description: "Portable Charger 10000mAh", price: 259 },
+    { orderedId: 104, productId: 'ae2004', description: "Waterproof Fitness Tracker", price: 399 },
+    { orderedId: 105, productId: 'af2005', description: "USB-C to Lightning Cable", price: 1299 },
+    { orderedId: 106, productId: 'ag2006', description: "Wireless Keyboard and Mouse Combo", price: 2999 },
+    { orderedId: 107, productId: 'ah2007', description: "HDMI to VGA Adapter", price: 899 },
+    { orderedId: 108, productId: 'ai2008', description: "Adjustable Laptop Stand", price: 1999 },
+    { orderedId: 109, productId: 'aj2009', description: "Noise-Canceling Headphones", price: 599 },
+    { orderedId: 110, productId: 'ak2010', description: "LED Desk Lamp with USB Charging Port", price: 229 }
+  ];
+
+  try {
+      const response = await axios.post('http://localhost:9001/createmyorders',orderData, {headers: {
+        'Content-Type': 'application/json'
+    }});
+      // const response = await fetch('http://localhost:9001/createmyorders', { // Replace with your actual backend URL
+      //     method: 'POST',
+      //     headers: {
+      //         'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(orderData),
+      // });
+
+      if (response.ok) {
+          const result = await response.json();
+          console.log('Insertion successful:', result);
+      } else {
+          console.error('Insertion failed');
+      }
+  } catch (error) {
+      console.error('Error:', error);
+  }
+};
+
+// Call the function to send data
+
+useEffect(() => {
+  axios.get('http://localhost:9001/getAllorders')
+  .then((response)=>{
+    setOrdereddata(response.data)
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
+}, [])
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredOrders = ordereddata.filter(order =>
+      order.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   // const handleAddress = async () => {
   //   try {
@@ -30,7 +84,7 @@ export default function Myprofile() {
             <h4>Akash RG</h4>
             <nav>
               <ul>
-                <li>My Orders {'>'}</li>
+                <li onClick={()=> setSelectedMenu("MyOrders")}>My Orders {'>'}</li>
                 <li>Account Settings
                   <ul>
                     <li onClick={() => setSelectedMenu("Profile Information")}>Profile Information</li>
@@ -58,7 +112,7 @@ export default function Myprofile() {
           <main className="profile-content">
             {selectedMenu === "Profile Information" && (
               <section className="personal-info">
-                <h5>Personal Information <span>Edit</span></h5>
+                <h5>Personal Information <span >Edit</span></h5>
                 <div className="info-item">
                   <label>First Name</label>
                   <input type="text" value="Akash" readOnly />
@@ -91,7 +145,46 @@ export default function Myprofile() {
                 <p>PAN card details content goes here...</p>
               </section>
             )}
+            {selectedMenu === "MyOrders" && (
+              
+            <section className="pan-info">             
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search your orders here"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+                <button className="search-button">Search Orders</button>
+            </div>
 
+                
+                <span onClick={insertOrders}>Edit</span>
+                {/* {filteredOrders.map((item,index)=> ( 
+                  
+              <div key={index} className="orders-info">
+             <div >{item.orderedId} </div>
+               <div>{item.productId} </div>
+               <div>{item.description} </div>
+               <div>{item.price} </div>
+               </div>
+              ))} */}
+                         {filteredOrders.length > 0 ? (
+                filteredOrders.map((item,index) => (
+                  <div key={index} className="orders-info row">
+                  <div className="col-3">{item.orderedId} </div>
+                    <div className="col-3">{item.productId} </div>
+                    <div className="col-3">{item.description} </div>
+                    <div className="col-3">{item.price} </div>
+                    </div>
+                ))
+            ) : (
+                <p className="no-results">No More Results To Display</p>
+            )}
+              </section> 
+            )}
+          
             <section className="faqs">
               <h3>FAQs</h3>
               <p>What happens when I update my email address (or mobile number)?</p>

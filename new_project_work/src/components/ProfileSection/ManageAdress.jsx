@@ -40,15 +40,15 @@ export default function ManageAdress() {
       console.log(err);
     }
   }
-  const handledelete=async(id)=>{
-       try{
-   const result1=await axios.delete('http://localhost:9001/deleteaddress/'+id)
-   console.log("suceessfully deleted"+result1.data)
-   window.location.reload()
-       }
-       catch(error){
-        console.error(error)
-       }
+  const handledelete = async (id) => {
+    try {
+      const result1 = await axios.delete('http://localhost:9001/deleteaddress/' + id)
+      console.log("suceessfully deleted" + result1.data)
+      window.location.reload()
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -65,30 +65,30 @@ export default function ManageAdress() {
 
           {addresresult.map((item, index) => (
             <div className='useraddress' key={index}>
-              <h6>Home</h6> 
+              <h6>Home</h6>
               <span>
-              <p>{item.area} {item.city} {item.selectStates} {item.pincode}</p>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="19"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-trash-2"
-                onClick={()=>handledelete(item._id)}
-              >
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"></path>
-                <path d="M10 11v6"></path>
-                <path d="M14 11v6"></path>
-                <line x1="9" y1="3" x2="15" y2="3"></line>
-                <line x1="12" y1="3" x2="12" y2="6"></line>
-              </svg>
-             
+                <p>{item.area} {item.city} {item.selectStates} {item.pincode}</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-trash-2"
+                  onClick={() => handledelete(item._id)}
+                >
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"></path>
+                  <path d="M10 11v6"></path>
+                  <path d="M14 11v6"></path>
+                  <line x1="9" y1="3" x2="15" y2="3"></line>
+                  <line x1="12" y1="3" x2="12" y2="6"></line>
+                </svg>
+
               </span>
             </div>
           ))}

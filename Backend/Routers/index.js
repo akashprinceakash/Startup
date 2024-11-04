@@ -5,6 +5,7 @@ const routes = express.Router();
 const UsersController = require('../Controllers/Users')
 const UserDetailsController = require('../Controllers/UsersDetails')
 const ManageuserAddress = require('../Controllers/Manageaddress')
+const ManageUserMyOrders = require('../Controllers/MyUserOrders');
 
 routes.post("/createUser",UsersController.createuser);
 routes.get("/users",UsersController.getUser);
@@ -24,4 +25,7 @@ routes.delete("/deletedetails/:imagesid",UserDetailsController.deleteDetails);
 routes.post("/createaddress", ManageuserAddress.CreateAddress);
 routes.get("/getaddress",ManageuserAddress.getAllAdrress);
 routes.delete("/deleteaddress/:id",ManageuserAddress.deleteAllAdrress);
+
+routes.post("/createmyorders",ManageUserMyOrders.createMyorders );
+routes.get("/getAllorders",ManageUserMyOrders.getAllmyorders );
 module.exports=routes;
