@@ -32,7 +32,7 @@
       cursor: pointer;
   }
   .category img:hover{
-    background-color: rgb(208, 197, 197);
+    background-color: rgb(230, 227, 227);
   }
   .category h4{
       margin-top: 10px;

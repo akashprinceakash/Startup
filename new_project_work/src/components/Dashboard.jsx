@@ -44,26 +44,31 @@ const dashboard = ({ user }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 2000,
+    arrows: true,
   };
  
   return (
     <>
       <div className="quick-search">
+      
         <div className='categories' >
         
           {quicksearchData.map((item) => {
             const { name, content, imageurl , imageID } = item;
-            return ( <div className="category" key={imageID}>
-           <Slider {...settings}>  
+            return ( 
+                
+            <div className="category" key={imageID}>
+          <Slider {...settings}>
             <img src={imageurl.startsWith("http") ? imageurl : `/${imageurl}`} alt="no image" onClick={() => handlequicksearch(imageID , imageurl , name)} style={{ width: '100%', borderRadius: '10px' }} />
            <h4>{name}</h4>
               <div>{content}</div>
               </Slider>
-            </div>  )
+            </div>   )
           })}
          
         </div>
+       
       </div>
     </>
   )

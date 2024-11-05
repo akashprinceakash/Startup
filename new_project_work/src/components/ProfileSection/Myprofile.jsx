@@ -8,6 +8,8 @@ import ManageAdress from "./ManageAdress";
 export default function Myprofile() {
   const [selectedMenu, setSelectedMenu] = useState("Profile Information");
    const [ordereddata , setOrdereddata] = useState([]);
+   const [currentusername , setcuurentuser]= useState();
+ 
   const navigate = useNavigate();
   const handlelogout = () => {
     navigate('/')
@@ -63,6 +65,8 @@ const [isDataLoaded, setIsDataLoaded] = useState(false);
 
 const fetchUserProfile = async () => {
   const user = auth.currentUser;
+  const userName = auth.currentUser.displayName; 
+  setcuurentuser(userName);
   if (user) {
     const userRef = doc(db, 'users', user.uid);
     const userSnap = await getDoc(userRef);
@@ -126,7 +130,7 @@ useEffect(() => {
           <aside className="sidebar">
             <img class="_2hxEz+" height="50px" width="50px" src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg" />
             <h6>Hello,</h6>
-            <h4>Akash RG</h4>
+            <h4>{currentusername}</h4>
             <nav>
               <ul>
                 <li onClick={()=> setSelectedMenu("MyOrders")}>My Orders {'>'}</li>
@@ -283,6 +287,7 @@ useEffect(() => {
               <p>Your login email id (or mobile number) changes, likewise...</p>
               <p>When will my account be updated with the new email address (or mobile number)?</p>
               <p>It happens as soon as you confirm the verification code...</p>
+              <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png" alt="" />
               {/* Add more FAQ content as needed */}
             </section>
           </main>
